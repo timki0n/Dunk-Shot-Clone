@@ -17,10 +17,12 @@ public class Ball : MonoBehaviour
 
 	private bool _isCleanShot;
 
-	private int _bounce = 1;
+	private int _bounce;
 
 	private Vector2 _saveVelocity;
 	private float _saveAngularVelocity;
+
+	private bool _isSleep;
 
 	private void Awake()
 	{
@@ -45,16 +47,22 @@ public class Ball : MonoBehaviour
 	{
 		GameManager.instance.DisableDrag();
 		_isCleanShot = true;
-		_bounce = 1;
+		_bounce = 0;
 		transform.SetParent(transform.parent.parent);
 		_rigidbody.angularVelocity = 240f;
 		_rigidbody.simulated = true;
-		_rigidbody.AddForce(vector * impulse, ForceMode2D.Impulse);
+		SetImpulse(vector * impulse);
 		_whipSound.Play();
+	}
+
+	public void SetImpulse(Vector2 vector)
+	{
+		_rigidbody.AddForce(vector, ForceMode2D.Impulse);
 	}
 
 	public void SetPosition(Vector2 position)
 	{
+		_isSleep = false;
 		transform.position = position;
 		_rigidbody.velocity = Vector2.zero;
 	}
@@ -79,6 +87,7 @@ public class Ball : MonoBehaviour
 
 		if (basket)
 		{
+			ScoreManager.instance.ClearCombo();
 			_isCleanShot = false;
 			return;
 		}
@@ -107,5 +116,15 @@ public class Ball : MonoBehaviour
 			_rigidbody.isKinematic = false;
 			_rigidbody.velocity = _saveVelocity;
 		}
+	}
+
+	private void FixedUpdate()
+	{
+		if (_rigidbody.IsSleeping() && !_isSleep)
+		{
+			LevelManager.instance.CheckLose(this);
+			_isSleep = true;
+		}
+			
 	}
 }

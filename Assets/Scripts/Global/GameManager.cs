@@ -50,6 +50,13 @@ public class GameManager : MonoBehaviour
 		OnChangedPause?.Invoke(isPaused);
 	}
 
+	[ContextMenu("SET NULL ALL SAVE")]
+	public void SetNullAll()
+	{
+		PlayerPrefs.DeleteAll();
+		PlayerPrefs.Save();
+	}
+
 	public void Hit(int bounce, bool isClear)
 	{
 		_canDrag = true;

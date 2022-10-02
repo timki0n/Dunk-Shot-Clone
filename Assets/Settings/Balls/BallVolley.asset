@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69853eda4ce3dd43b900d07b837ef07, type: 3}
+  m_Name: BallVolley
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: b5ec98cb667029b4d99286258fe1b951, type: 3}
+  AudioTap: {fileID: 8300000, guid: 3ec8984ddff5d844a8d83004d6d211fc, type: 3}
+  PitchAudioTap: 1.1
+  Price: 50

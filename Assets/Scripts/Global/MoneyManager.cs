@@ -38,6 +38,14 @@ public class MoneyManager : MonoBehaviour
 		return _money;
 	}
 
+	public void SpendMoney(int amount)
+	{
+		_money = Mathf.Clamp(_money - amount, 0, 1000000);
+		OnMoneyChanged?.Invoke(_money);
+		_soundCollect.Play();
+		Save();
+	}
+
 	public void AddMoney()
 	{
 		_money += 1;

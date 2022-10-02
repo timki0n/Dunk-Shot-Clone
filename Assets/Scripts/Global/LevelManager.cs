@@ -120,6 +120,11 @@ public class LevelManager : MonoBehaviour
 		_fieldHalfWidth = width;
 	}
 
+	public Vector2 GetCurrentBasketPosition()
+	{
+		return _baskets[0].transform.position;
+	}
+
 	[ContextMenu("NEW BASKET")]
 	public void CreateNextBasket()
 	{

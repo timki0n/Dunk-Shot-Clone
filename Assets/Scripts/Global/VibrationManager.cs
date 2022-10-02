@@ -23,6 +23,18 @@ public class VibrationManager : MonoBehaviour
 		InitializeManager();
 	}
 
+	private void Start()
+	{
+		if(ScoreManager.instance)
+			ScoreManager.instance.OnScoreCombo += OnScoreCombo;
+	}
+
+	private void OnScoreCombo(int combo, int bounce, int plus)
+	{
+		if (combo > 0)
+			Vibrate();
+	}
+
 	private void InitializeManager()
 	{
 		Vibration.Init();

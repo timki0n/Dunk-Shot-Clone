@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 	private float _duration = 0.5f;
 
 	[SerializeField]
-	private GameObject _settingObject;
+	private GameObject[] _hideObjects;
 
 	[SerializeField]
 	private Transform _logoTransform;
@@ -22,7 +22,11 @@ public class MainMenu : MonoBehaviour
 	{
 		StopAllCoroutines();
 		StartCoroutine(AnimateScaleDown());
-		_settingObject.SetActive(false);
+
+		foreach (var obj in _hideObjects)
+		{
+			obj.SetActive(false);
+		}
 	}
 
 
