@@ -103,6 +103,7 @@ public class Ball : MonoBehaviour
 	{
 		if (isPaused)
 		{
+			_isSleep = true;
 			_saveAngularVelocity = _rigidbody.angularVelocity;
 			_saveVelocity = _rigidbody.velocity;
 			_rigidbody.velocity = Vector2.zero;
@@ -112,6 +113,7 @@ public class Ball : MonoBehaviour
 
 		else
 		{
+			_isSleep = false;
 			_rigidbody.angularVelocity = _saveAngularVelocity;
 			_rigidbody.isKinematic = false;
 			_rigidbody.velocity = _saveVelocity;
